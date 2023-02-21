@@ -12,6 +12,7 @@ from djangocms_site_importer.management.core.ParagraphParser import *
 from djangocms_site_importer.management.core.SectionParser import *
 from djangocms_site_importer.management.core.TextParser import *
 from djangocms_site_importer.management.core.DivParser import *
+from djangocms_site_importer.management.core.PageElement import *
 
 class SiteParser:
 
@@ -19,13 +20,13 @@ class SiteParser:
 
     file_list = []
 
+    page_list = []
+
     def __init__(self, dir):
         self.html_dir = dir
+        self.page_list = []
 
     def parseDir(self):
-        dir_items = os.listdir(self.html_dir)        
-        #print(*files, sep="\n")
-
         for subdir, dirs, files in os.walk(self.html_dir):
             for file in files:
                 print(os.path.join(subdir, file))
@@ -39,8 +40,6 @@ class SiteParser:
         if(tag != None and tag != "None"):
             print("Parsing Tag")
             for p in self.parser_list:
-
-                
                 
                 #print("THis: " + HeadingParser.getElementType())
                 #print("tag: " + tag)
@@ -91,9 +90,14 @@ class SiteParser:
         if(filename.endswith('.html')):
             file_list = []
 
+            pe = PageElement()
+
             pparser = PageParser(filepath)
             pparser.parseFile()
 
-            parse_tree.append(pparser.parse_tree)
+            pe.setTitle(pparser.page_name)
+            pe.addTreeItem(pparser.parse_tree)
+            #parse_tree.append(pparser.parse_tree)
+            #file_list.append(pparser)
 
-            file_list.append(pparser)
+            self.page_list.append(pe)

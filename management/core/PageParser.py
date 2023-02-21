@@ -14,10 +14,12 @@ class PageParser:
     element_list = []
     parser_list = [DivParser, HeadingParser, ParagraphParser, SectionParser, TextParser]
     parse_tree = []
+    
 
     def __init__(self, filepath):
         self.element_list = []
         self.filepath = filepath
+        self.page_name = ""
 
     
     def parseFile(self):
@@ -25,6 +27,7 @@ class PageParser:
                 soup = BeautifulSoup(fp, "html.parser")
 
                 if(soup is not None and soup.head is not None):
+                    self.page_name = soup.find_all('title')
                     for child in soup.body:
                         #print("Child: " + str(child.name) + "   " + str(child))
                         self.parseSection(child, str(child.name))
