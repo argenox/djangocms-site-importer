@@ -38,7 +38,7 @@ class PageParser:
                                     
                 if(new_page is not None):                        
                     page_placeholder = new_page.placeholders.all()[0]
-                    self.processChildren(soup.body, new_page)
+                    self.processChildren(soup.body, new_page, parent_plugin=None)
                     
 
     def processChildren(self, children, page, parent_plugin=None):
@@ -69,14 +69,16 @@ class PageParser:
                                 print("Adding Plugin: " + parser.getPluginName())
                                 print("\t" + parser.getPluginBody())
 
-                                placeholder = page.placeholders.all()[0]
-                                parent = placeholder
+                                page_top_placeholder = page.placeholders.all()[0]
+                               # page_top_placeholder = page.placeholders.get(slot="body")
+                                #parent = placeholder
 
-                                print("parent  " + str(parent))
+                                #print("parent  " + str(parent))
                                 print("Page" + str(type(page)))
-                                print("Placeholder" + str(type(placeholder)))
+                                # print("Placeholder" + str(type(placeholder)))
+                                # print("Placeholder" + str(type(placeholder)))
                                                                 
-                                new_plug = parser.createPlugin(parent, parent_plugin)
+                                new_plug = parser.createPlugin(page_top_placeholder, parent_plugin)
 
                                 for sub_child in child:
                                     if(self.checkChildValid(sub_child)):

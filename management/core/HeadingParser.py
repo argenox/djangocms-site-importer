@@ -18,3 +18,10 @@ class HeadingParser(ElementParser):
 
     def export(self):
         pass
+
+    def createPlugin(self, parent, placeholder):
+        from cms.api import add_plugin
+        
+        add_plugin(parent, self.getPluginName(), 'en', body=self.getPluginBody(), target=placeholder)
+
+

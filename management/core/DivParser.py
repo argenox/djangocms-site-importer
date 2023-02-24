@@ -17,11 +17,11 @@ class DivParser(ElementParser):
         plugin = None
 
         if(self.getPluginName() == "GridRowPlugin"):
-            plugin = add_plugin(parent, 'GridColumnPlugin', 'en', config={ "column_alignment" : "", "text_alignment" : "", "xs_col": None})
+            plugin = add_plugin(parent, 'GridColumnPlugin', 'en', target=placeholder, config={ "column_alignment" : "", "text_alignment" : "", "xs_col": None})
         elif(self.getPluginName() == "GridRowPlugin"):
-            plugin = add_plugin(parent,'GridRowPlugin', 'en', config={ "vertical_alignment" : "", "horizontal_alignment" : ""})
+            plugin = add_plugin(parent,'GridRowPlugin', 'en', target=placeholder, config={ "vertical_alignment" : "", "horizontal_alignment" : ""})
         elif(self.getPluginName() == "GridContainer"):
-            plugin = add_plugin(parent, 'GridContainerPlugin', 'en', config={"container_type": "section", "attributes": {"class" : self.getClass()}})
+            plugin = add_plugin(parent, 'GridContainerPlugin', 'en', target=placeholder, config={"container_type": "section", "attributes": {"class" : self.getClass()}})
         
         return plugin
     
