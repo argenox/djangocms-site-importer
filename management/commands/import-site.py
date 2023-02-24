@@ -20,16 +20,16 @@ class Command(BaseCommand):
 
         sp.parseDir()
 
-        for page in sp.page_list:
-            #my_pagecreate_page("Test", "templates/bootstrap5.html", "en")
-            from cms.api import create_page, add_plugin
-            new_page = create_page(page.title, language='en', template='bootstrap5.html')
+        # for page in sp.page_list:
+        #     #my_pagecreate_page("Test", "templates/bootstrap5.html", "en")
+        #     from cms.api import create_page, add_plugin
+        #     new_page = create_page(page.title, language='en', template='bootstrap5.html')
 
             # Get root placeholder
-            placeholder = page.placeholders.get(slot='body')
+#            placeholder = page.placeholders.get(slot='body')
 
-            for item in page.parse_tree:
-                add_plugin(placeholder, 'TextPlugin', 'en', body='hello world')
+ #           for item in page.parse_tree:
+  #              add_plugin(placeholder, 'TextPlugin', 'en', body='hello world')
 
     
         #    add_plugin(placeholder, plugin_type, language, position='last-child', target=None, **data)

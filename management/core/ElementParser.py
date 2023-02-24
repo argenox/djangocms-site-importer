@@ -9,6 +9,12 @@ class ElementParser:
     def getClass(self):
         return self.element.attrs.get("class")[0]
     
+    def getPluginName(self):
+        return ""
+    
+    def getPluginBody(self):
+        return ""
+    
     def getChildren(self):
         return self.children
     
@@ -36,8 +42,11 @@ class ElementParser:
             print(pre + self.tag + self.class_info)  
         else:
             print(pre + self.tag)
-        for c in self.children:            
+        for c in self.children:
             c.print(pre + "\t")
+
+    def createPlugin(self, parent, placeholder):
+        pass
 
     def export(self):
         pass

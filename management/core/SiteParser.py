@@ -31,7 +31,7 @@ class SiteParser:
             for file in files:
                 print(os.path.join(subdir, file))
                 self.parseFile(subdir, file)
-                self.printTree()
+                # self.printTree()
                 break
             break
 
@@ -40,11 +40,6 @@ class SiteParser:
         if(tag != None and tag != "None"):
             print("Parsing Tag")
             for p in self.parser_list:
-                
-                #print("THis: " + HeadingParser.getElementType())
-                #print("tag: " + tag)
-
-                #print("Does it start? " + str(tag.startswith(p.getElementType())))
                 if(tag.startswith(p.getElementType())):
                     
                     print("Tag Starts with it " + p.getElementType())
@@ -95,9 +90,9 @@ class SiteParser:
             pparser = PageParser(filepath)
             pparser.parseFile()
 
-            pe.setTitle(pparser.page_name)
-            pe.addTreeItem(pparser.parse_tree)
-            #parse_tree.append(pparser.parse_tree)
-            #file_list.append(pparser)
+            # pe.setTitle(pparser.page_name)
+            # pe.addTreeItem(pparser.parse_tree)
+            # #parse_tree.append(pparser.parse_tree)
+            # #file_list.append(pparser)
 
-            self.page_list.append(pe)
+            # self.page_list.append(pe)

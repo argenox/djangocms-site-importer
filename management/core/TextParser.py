@@ -8,5 +8,16 @@ class TextParser(ElementParser):
     def print(self, pre=""):        
         super(TextParser, self).print(pre)
 
+    def getPluginName(self):
+        return "TextPlugin"
+    
+    def getPluginBody(self):
+        return ""
+    
+    def createPlugin(self, parent, placeholder):
+        from cms.api import add_plugin
+        
+        add_plugin(parent, self.getPluginName(), 'en', body=self.getPluginBody(), target=placeholder)
+    
     def export(self):
         pass

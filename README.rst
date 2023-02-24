@@ -20,6 +20,6 @@ For a manual install:
 
     'djangocms-site-importer',
 
-You will then be able to import a site using
+You will then be able to import a site using::
 
     python manage.py import-site path_to_site_dir

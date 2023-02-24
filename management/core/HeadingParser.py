@@ -5,6 +5,12 @@ class HeadingParser(ElementParser):
     def __init__(self, element, tag):
         super().__init__(element, tag)
         
+    def getPluginName(self):
+        return "TextPlugin"
+
+    
+    def getPluginBody(self):
+        return ""
     
     def print(self, pre=""):
         #print("This is " + __name__)
