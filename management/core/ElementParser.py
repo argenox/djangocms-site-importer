@@ -14,6 +14,35 @@ class ElementParser:
             return ' '.join(self.element.attrs.get("style"))
         return ""
     
+    def getAttributes(self):
+
+        at = self.element.attrs
+        new_dict = {}
+        if(at != None and len(at) > 0):
+
+            for k, vals in at.items():
+                new_dict[k] = " ".join(vals)
+
+        print(str(new_dict))
+        return new_dict
+    
+    def getAttributesStr(self):
+        at = self.element.attrs
+        at_str = ""
+        if(at != None and len(at) > 0):
+
+            for k, vals in at.items():
+                print(k, vals)
+                at_str += k.lower() + "=\"" + " ".join(vals) + "\" "
+
+            # keys = at.keys()
+            # vals = at.values()
+            # for x in range (0, len(keys)):            
+            #     print("key: " + keys[x] + "value: " + vals[x])
+            #     at_str += keys[x] + "=\"" + vals[x] + "\" "
+        print("Attrib: " + at_str)
+        return at_str
+
     def getPluginName(self):
         return ""
     

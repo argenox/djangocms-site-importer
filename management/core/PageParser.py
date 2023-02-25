@@ -58,7 +58,7 @@ class PageParser:
                     for p in self.parser_list:
                         if(tag.startswith(p.getElementType())):
                             
-                            print("Tag Starts with it " + p.getElementType())                            
+                            #print("Tag Starts with it " + p.getElementType())                            
                             parser_object = type(p)
 
                             klass = globals()[p.__name__]
@@ -66,12 +66,12 @@ class PageParser:
 
                             if(parser is not None):
 
-                                print("Adding Plugin: " + parser.getPluginName())
-                                print("\t" + parser.getPluginBody())
+                                #print("Adding Plugin: " + parser.getPluginName())
+                                #print("\t" + parser.getPluginBody())
 
                                 page_top_placeholder = page.placeholders.all()[0]
                               
-                                print("Page" + str(type(page)))
+                                #print("Page" + str(type(page)))
                                                                 
                                 new_plug = parser.createPlugin(page_top_placeholder, parent_plugin)
 
