@@ -23,7 +23,7 @@ class HeadingParser(ElementParser):
         from cms.api import add_plugin
 
         print("Attributes: " + self.getAttributesStr())
-        body = "<" + self.tag + " " + self.getAttributesStr() + "> " + self.getPluginBody() + "<" + self.tag + ">"
+        body = "<" + self.tag + " " + self.getAttributesStr() + "> " + self.getPluginBody() + "</" + self.tag + ">"
         print("heADING BODY: " + body)
         
         add_plugin(parent, 
