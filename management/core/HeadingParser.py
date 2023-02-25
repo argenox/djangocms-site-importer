@@ -10,7 +10,7 @@ class HeadingParser(ElementParser):
 
     
     def getPluginBody(self):
-        return ""
+        return self.element.get_text()
     
     def print(self, pre=""):
         #print("This is " + __name__)

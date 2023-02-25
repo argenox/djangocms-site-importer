@@ -75,7 +75,7 @@ class PageParser:
                                                                 
                                 new_plug = parser.createPlugin(page_top_placeholder, parent_plugin)
 
-                                # Process children
+                                # Process children of the child
                                 self.processChildren(child, page, parent_plugin=new_plug)
 
                                 # for sub_child in child:

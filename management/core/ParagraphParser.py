@@ -11,7 +11,7 @@ class ParagraphParser(ElementParser):
         return "TextPlugin"
     
     def getPluginBody(self):
-        return ""
+        return self.element.get_text()
     
     def createPlugin(self, parent, placeholder):
         from cms.api import add_plugin
