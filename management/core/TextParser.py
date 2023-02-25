@@ -11,15 +11,17 @@ class TextParser(ElementParser):
     def getPluginName(self):
         return "TextPlugin"
     
+    def allowChildren(self):
+            return False
+    
     def getPluginBody(self):
-        return self.element.get_text()
+        return self.element
+        #return self.element.get_text()
     
     def createPlugin(self, parent, placeholder):
         from cms.api import add_plugin
         
-        #print("Attributes: " + self.getAttributesStr())
-        #print("SelfPluginBody: " + self.getPluginBody())
-        pbody = "<" + self.tag + " " + self.getAttributesStr() + "> " + self.getPluginBody() + "</" + self.tag + ">"
+        pbody = self.getPluginBody() #"<" + self.tag + " " + self.getAttributesStr() + "> " + self.getPluginBody() + "</" + self.tag + ">"
         #print("heADING BODY: " + body)
 
         add_plugin(parent, 

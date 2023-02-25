@@ -11,6 +11,9 @@ from djangocms_site_importer.management.core.StrongParser import *
 from djangocms_site_importer.management.core.DivParser import *
 from djangocms_site_importer.management.core.olParser import *
 from djangocms_site_importer.management.core.liParser import *
+from djangocms_site_importer.management.core.iParser import *
+from djangocms_site_importer.management.core.linkParser import *
+from djangocms_site_importer.management.core.tableParser import *
 
 class PageParser:
     element_list = []
@@ -21,7 +24,11 @@ class PageParser:
                    TextParser, 
                    StrongParser,
                    liParser,
-                   olParser]
+                   olParser,
+                   iParser,
+                   linkParser,
+                   tableParser]
+    
     parse_tree = []
     
 
@@ -70,7 +77,6 @@ class PageParser:
                     for p in self.parser_list:
                         if(tag.startswith(p.getElementType())):
                             
-                            #print("Tag Starts with it " + p.getElementType())                            
                             parser_object = type(p)
 
                             klass = globals()[p.__name__]
@@ -78,22 +84,13 @@ class PageParser:
 
                             if(parser is not None):
 
-                                #print("Adding Plugin: " + parser.getPluginName())
-                                #print("\t" + parser.getPluginBody())
-
                                 page_top_placeholder = page.placeholders.all()[0]
-                              
-                                #print("Page" + str(type(page)))
-                                #print("CREATING PLUGINNNN")
+
                                 new_plug = parser.createPlugin(page_top_placeholder, parent_plugin)
 
-                                # Process children of the child
-                                self.processChildren(child, page, parent_plugin=new_plug)
-
-                                # for sub_child in child:
-                                #     if(self.checkChildValid(child[1])):
-                                #         print("\tSubchild Type:" + str(sub_child.name))
-                                #         if type(child) is not bs4.element.NavigableString:  
+                                if(parser.allowChildren()):
+                                    # Process children of the child
+                                    self.processChildren(child, page, parent_plugin=new_plug)
                             break                                          
                                             
         

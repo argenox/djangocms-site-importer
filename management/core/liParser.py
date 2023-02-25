@@ -6,5 +6,8 @@ class liParser(TextParser):
         super().__init__(element, tag)
         self.ElementType = "li"
 
+    def allowChildren(self):
+            return False
+
     
    

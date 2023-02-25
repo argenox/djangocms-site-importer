@@ -63,11 +63,8 @@ class ElementParser:
     def getElementType(cls):        
         return cls.ElementType
     
-    def hasChildren(self):
-        if(self.children != None and len(self.children) > 0):
+    def allowChildren(self):
             return True
-        else:
-            return False
         
     def print(self, pre=""):    
         if(self.element.has_attr('class')):
