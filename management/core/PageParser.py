@@ -70,22 +70,19 @@ class PageParser:
                                 print("\t" + parser.getPluginBody())
 
                                 page_top_placeholder = page.placeholders.all()[0]
-                               # page_top_placeholder = page.placeholders.get(slot="body")
-                                #parent = placeholder
-
-                                #print("parent  " + str(parent))
+                              
                                 print("Page" + str(type(page)))
-                                # print("Placeholder" + str(type(placeholder)))
-                                # print("Placeholder" + str(type(placeholder)))
                                                                 
                                 new_plug = parser.createPlugin(page_top_placeholder, parent_plugin)
 
-                                for sub_child in child:
-                                    if(self.checkChildValid(sub_child)):
-                                        print("\tSubchild Type:" + str(sub_child.name))                                       
-                                        if type(child) is not bs4.element.NavigableString:                                            
-                                            self.processChildren(sub_child, page, parent_plugin=new_plug)
-                                          
+                                # Process children
+                                self.processChildren(child, page, parent_plugin=new_plug)
+
+                                # for sub_child in child:
+                                #     if(self.checkChildValid(child[1])):
+                                #         print("\tSubchild Type:" + str(sub_child.name))
+                                #         if type(child) is not bs4.element.NavigableString:                                            
+                                            
         
     def createPage(self, name):
         from cms.api import create_page

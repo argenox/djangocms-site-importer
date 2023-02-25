@@ -4,10 +4,15 @@ class ElementParser:
         self.element = element
         self.tag = tag
         self.children = []
-        self.class_info = self.joinClass(self.element.get("class"))
-
+        
     def getClass(self):
-        return self.element.attrs.get("class")[0]
+        return ' '.join(self.element.attrs.get("class"))
+    
+    def getStyle(self):
+        style = self.element.attrs.get("style")
+        if(style != None and len(style) > 0):
+            return ' '.join(self.element.attrs.get("style"))
+        return ""
     
     def getPluginName(self):
         return ""
@@ -39,7 +44,7 @@ class ElementParser:
         
     def print(self, pre=""):    
         if(self.element.has_attr('class')):
-            print(pre + self.tag + self.class_info)  
+            print(pre + self.tag + self.getClass())  
         else:
             print(pre + self.tag)
         for c in self.children:
