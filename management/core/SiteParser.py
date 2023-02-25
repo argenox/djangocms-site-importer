@@ -29,7 +29,7 @@ class SiteParser:
     def parseDir(self):
         for subdir, dirs, files in os.walk(self.html_dir):
             for file in files:
-                print(os.path.join(subdir, file))
+                #print(os.path.join(subdir, file))
                 self.parseFile(subdir, file)
                 # self.printTree()
                 break
@@ -78,21 +78,14 @@ class SiteParser:
         for t in self.parse_tree:
             t.print()
 
-    def parseFile(self, dir, filename):
-        print("Parse File")
+    def parseFile(self, dir, filename):        
         parse_tree = []
         filepath = os.path.join(dir, filename)
         if(filename.endswith('.html')):
+            print("Parsing File " + filename)
             file_list = []
 
             pe = PageElement()
 
             pparser = PageParser(filepath)
             pparser.parseFile()
-
-            # pe.setTitle(pparser.page_name)
-            # pe.addTreeItem(pparser.parse_tree)
-            # #parse_tree.append(pparser.parse_tree)
-            # #file_list.append(pparser)
-
-            # self.page_list.append(pe)

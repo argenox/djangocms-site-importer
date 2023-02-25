@@ -22,9 +22,9 @@ class HeadingParser(ElementParser):
     def createPlugin(self, parent, placeholder):
         from cms.api import add_plugin
 
-        print("Attributes: " + self.getAttributesStr())
+        #print("Attributes: " + self.getAttributesStr())
         body = "<" + self.tag + " " + self.getAttributesStr() + "> " + self.getPluginBody() + "</" + self.tag + ">"
-        print("heADING BODY: " + body)
+        #print("heADING BODY: " + body)
         
         add_plugin(parent, 
                    self.getPluginName(), 

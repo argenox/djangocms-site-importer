@@ -22,8 +22,6 @@ class ElementParser:
 
             for k, vals in at.items():
                 new_dict[k] = " ".join(vals)
-
-        print(str(new_dict))
         return new_dict
     
     def getAttributesStr(self):
@@ -32,7 +30,7 @@ class ElementParser:
         if(at != None and len(at) > 0):
 
             for k, vals in at.items():
-                print(k, vals)
+                #print(k, vals)
                 at_str += k.lower() + "=\"" + " ".join(vals) + "\" "
 
             # keys = at.keys()
@@ -40,7 +38,7 @@ class ElementParser:
             # for x in range (0, len(keys)):            
             #     print("key: " + keys[x] + "value: " + vals[x])
             #     at_str += keys[x] + "=\"" + vals[x] + "\" "
-        print("Attrib: " + at_str)
+        #print("Attrib: " + at_str)
         return at_str
 
     def getPluginName(self):

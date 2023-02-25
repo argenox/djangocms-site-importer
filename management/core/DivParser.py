@@ -13,7 +13,7 @@ class DivParser(ElementParser):
     def createPlugin(self, parent, placeholder):
         from cms.api import add_plugin
 
-        print("CreatePlugin " + self.tag + "  Class: " + self.getClass())
+        #print("CreatePlugin " + self.tag + "  Class: " + self.getClass())
         plugin = None
 
         if(self.getPluginName() == "GridRowPlugin"):
@@ -29,8 +29,7 @@ class DivParser(ElementParser):
                                 target=placeholder, 
                                 config={ "vertical_alignment" : "", "horizontal_alignment" : ""})
         elif(self.getPluginName() == "GridContainer"):
-
-            print(str(self.getAttributes()))
+            #print(str(self.getAttributes()))
             plugin = add_plugin(parent, 
                                 'GridContainerPlugin', 
                                 'en', 

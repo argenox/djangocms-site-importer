@@ -46,10 +46,10 @@ class PageParser:
         # Iterate over all items in 
         for child in children:
 
-            print("Process Children Child " + str(child))
+            #print("Process Children Child " + str(child))
             if(self.checkChildValid(child)):
-                print("=======================================================================")
-                print("Child: Name: " + str(child.name))
+                #print("=======================================================================")
+                #print("Child: Name: " + str(child.name))
 
                 from cms.api import add_plugin
 
@@ -75,7 +75,7 @@ class PageParser:
                                 page_top_placeholder = page.placeholders.all()[0]
                               
                                 #print("Page" + str(type(page)))
-                                print("CREATING PLUGINNNN")
+                                #print("CREATING PLUGINNNN")
                                 new_plug = parser.createPlugin(page_top_placeholder, parent_plugin)
 
                                 # Process children of the child
