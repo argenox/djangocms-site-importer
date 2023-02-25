@@ -9,10 +9,19 @@ from djangocms_site_importer.management.core.SectionParser import *
 from djangocms_site_importer.management.core.TextParser import *
 from djangocms_site_importer.management.core.StrongParser import *
 from djangocms_site_importer.management.core.DivParser import *
+from djangocms_site_importer.management.core.olParser import *
+from djangocms_site_importer.management.core.liParser import *
 
 class PageParser:
     element_list = []
-    parser_list = [DivParser, HeadingParser, ParagraphParser, SectionParser, TextParser, StrongParser]
+    parser_list = [DivParser, 
+                   HeadingParser, 
+                   ParagraphParser, 
+                   SectionParser, 
+                   TextParser, 
+                   StrongParser,
+                   liParser,
+                   olParser]
     parse_tree = []
     
 
