@@ -28,12 +28,10 @@ class SiteParser:
 
     def parseDir(self):
         for subdir, dirs, files in os.walk(self.html_dir):
-            for file in files:
-                #print(os.path.join(subdir, file))
-                self.parseFile(subdir, file)
-                # self.printTree()
-                break
-            break
+            for file in files:                
+                self.parseFile(subdir, file)                
+                # break
+            # break
 
     def parseSection(self, section, tag, parent=None):
 

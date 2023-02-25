@@ -9,6 +9,8 @@ class DivParser(ElementParser):
         #print("This is " + __name__)
         super(DivParser, self).print(pre)
 
+    def getSectionName(self):
+        return "div"
 
     def createPlugin(self, parent, placeholder):
         from cms.api import add_plugin
@@ -34,7 +36,7 @@ class DivParser(ElementParser):
                                 'GridContainerPlugin', 
                                 'en', 
                                 target=placeholder, 
-                                config={"container_type": "section", "attributes": self.getAttributes()})
+                                config={"container_type": self.getSectionName(), "attributes": self.getAttributes()})
         
         return plugin
     
