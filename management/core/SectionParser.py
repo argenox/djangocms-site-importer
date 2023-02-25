@@ -20,6 +20,5 @@ class SectionParser(ElementParser):
         
         add_plugin(parent, self.getPluginName(), 'en', body=self.element, target=placeholder)
 
-
     def export(self):
         pass

@@ -7,11 +7,12 @@ from djangocms_site_importer.management.core.HeadingParser  import *
 from djangocms_site_importer.management.core.ParagraphParser import *
 from djangocms_site_importer.management.core.SectionParser import *
 from djangocms_site_importer.management.core.TextParser import *
+from djangocms_site_importer.management.core.StrongParser import *
 from djangocms_site_importer.management.core.DivParser import *
 
 class PageParser:
     element_list = []
-    parser_list = [DivParser, HeadingParser, ParagraphParser, SectionParser, TextParser]
+    parser_list = [DivParser, HeadingParser, ParagraphParser, SectionParser, TextParser, StrongParser]
     parse_tree = []
     
 
@@ -44,6 +45,8 @@ class PageParser:
     def processChildren(self, children, page, parent_plugin=None):
         # Iterate over all items in 
         for child in children:
+
+            print("Process Children Child " + str(child))
             if(self.checkChildValid(child)):
                 print("=======================================================================")
                 print("Child: Name: " + str(child.name))
@@ -72,7 +75,7 @@ class PageParser:
                                 page_top_placeholder = page.placeholders.all()[0]
                               
                                 #print("Page" + str(type(page)))
-                                                                
+                                print("CREATING PLUGINNNN")
                                 new_plug = parser.createPlugin(page_top_placeholder, parent_plugin)
 
                                 # Process children of the child
@@ -81,7 +84,8 @@ class PageParser:
                                 # for sub_child in child:
                                 #     if(self.checkChildValid(child[1])):
                                 #         print("\tSubchild Type:" + str(sub_child.name))
-                                #         if type(child) is not bs4.element.NavigableString:                                            
+                                #         if type(child) is not bs4.element.NavigableString:  
+                            break                                          
                                             
         
     def createPage(self, name):

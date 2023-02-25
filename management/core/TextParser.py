@@ -17,14 +17,15 @@ class TextParser(ElementParser):
     def createPlugin(self, parent, placeholder):
         from cms.api import add_plugin
         
-        print("Attributes: " + self.getAttributesStr())
-        body = "<" + self.tag + " " + self.getAttributesStr() + "> " + self.getPluginBody() + "</" + self.tag + ">"
-        print("heADING BODY: " + body)
+        #print("Attributes: " + self.getAttributesStr())
+        #print("SelfPluginBody: " + self.getPluginBody())
+        pbody = "<" + self.tag + " " + self.getAttributesStr() + "> " + self.getPluginBody() + "</" + self.tag + ">"
+        #print("heADING BODY: " + body)
 
         add_plugin(parent, 
                    self.getPluginName(), 
                    'en', 
-                   body=body, 
+                   body=pbody, 
                    target=placeholder)
     
     def export(self):
