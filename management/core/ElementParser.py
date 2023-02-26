@@ -1,9 +1,10 @@
 class ElementParser:
     ElementType = "h"
-    def __init__(self, element, tag):
+    def __init__(self, element, tag, filepath):
         self.element = element
         self.tag = tag
         self.children = []
+        self.filepath = filepath
         
     def getClass(self):
         return ' '.join(self.element.attrs.get("class"))
@@ -43,10 +44,10 @@ class ElementParser:
 
     def getPluginName(self):
         return ""
-    
+
     def getPluginBody(self):
         return ""
-    
+
     def getChildren(self):
         return self.children
     
@@ -65,7 +66,7 @@ class ElementParser:
     
     def allowChildren(self):
             return True
-        
+
     def print(self, pre=""):    
         if(self.element.has_attr('class')):
             print(pre + self.tag + self.getClass())  

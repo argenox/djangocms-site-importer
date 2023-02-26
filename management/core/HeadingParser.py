@@ -2,8 +2,8 @@ from djangocms_site_importer.management.core.ElementParser import *
 
 class HeadingParser(ElementParser):
     ElementType = "h"
-    def __init__(self, element, tag):
-        super().__init__(element, tag)
+    def __init__(self, element, tag, filepath):
+        super().__init__(element, tag, filepath)
         
     def getPluginName(self):
         return "TextPlugin"

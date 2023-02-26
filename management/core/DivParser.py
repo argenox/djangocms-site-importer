@@ -2,8 +2,8 @@ from djangocms_site_importer.management.core.ElementParser import *
 
 class DivParser(ElementParser):
     ElementType = "div"
-    def __init__(self, element, tag):
-        super().__init__(element, tag)
+    def __init__(self, element, tag, filepath):
+        super().__init__(element, tag, filepath)
 
     def print(self, pre=""):
         #print("This is " + __name__)

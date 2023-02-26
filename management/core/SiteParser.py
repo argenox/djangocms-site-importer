@@ -30,8 +30,8 @@ class SiteParser:
         for subdir, dirs, files in os.walk(self.html_dir):
             for file in files:                
                 self.parseFile(subdir, file)                
-                # break
-            # break
+                break
+            break
 
     def parseSection(self, section, tag, parent=None):
 

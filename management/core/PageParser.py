@@ -14,6 +14,7 @@ from djangocms_site_importer.management.core.liParser import *
 from djangocms_site_importer.management.core.iParser import *
 from djangocms_site_importer.management.core.linkParser import *
 from djangocms_site_importer.management.core.tableParser import *
+from djangocms_site_importer.management.core.imageParser import *
 
 class PageParser:
     element_list = []
@@ -24,10 +25,11 @@ class PageParser:
                    TextParser, 
                    StrongParser,
                    liParser,
-                   olParser,
-                   iParser,
+                   olParser,                   
                    linkParser,
-                   tableParser]
+                   tableParser,
+                   imageParser,
+                   iParser]
     
     parse_tree = []
     
@@ -64,8 +66,8 @@ class PageParser:
 
             #print("Process Children Child " + str(child))
             if(self.checkChildValid(child)):
-                #print("=======================================================================")
-                #print("Child: Name: " + str(child.name))
+                print("=======================================================================")
+                print("Child: Name: " + str(child.name))
 
                 from cms.api import add_plugin
 
@@ -80,9 +82,11 @@ class PageParser:
                             parser_object = type(p)
 
                             klass = globals()[p.__name__]
-                            parser = klass(child, tag)
+                            parser = klass(child, tag, self.filepath)
 
                             if(parser is not None):
+
+                                print("Found parser: " + parser.ElementType)
 
                                 page_top_placeholder = page.placeholders.all()[0]
 
