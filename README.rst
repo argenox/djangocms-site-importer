@@ -1,8 +1,8 @@
 ======================
-django CMS Bootstrap 5
+django CMS Site Importer
 ======================
 
-This project is not associated with django CMS 
+This project is not associated with django CMS
 
 |pypi| |build| |coverage|
 
