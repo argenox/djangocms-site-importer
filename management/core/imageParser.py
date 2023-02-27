@@ -31,7 +31,7 @@ class imageParser(ElementParser):
         #print("Alt: " + self.element['alt'])
 
         image_path = self.element['src'].replace('\\','/') #os.path.basename(self.element['src'])
-        image_alt = self.element['alt']
+        #image_alt = self.element['alt']
 
         head, tail = os.path.split(self.filepath)
 

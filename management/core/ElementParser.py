@@ -7,7 +7,13 @@ class ElementParser:
         self.filepath = filepath
         
     def getClass(self):
-        return ' '.join(self.element.attrs.get("class"))
+        if(self.element != None and 
+           self.element.attrs != None and 
+           self.element.attrs.get("class") != None and
+           len(self.element.attrs.get("class") > 0)):
+            return ' '.join(self.element.attrs.get("class"))
+        else:
+            return ""
     
     def getStyle(self):
         style = self.element.attrs.get("style")
