@@ -22,13 +22,13 @@ class imageParser(ElementParser):
         from cms.api import add_plugin
 
         print("Adding Image Plugin")
-        print("Body: " + self.getPluginBody()) 
+        #print("Body: " + self.getPluginBody()) 
 
         images = self.element.findAll('img')
 
-        print("Src: " + self.element['src'])
+        #print("Src: " + self.element['src'])
         # Print alternate text
-        print("Alt: " + self.element['alt'])
+        #print("Alt: " + self.element['alt'])
 
         image_path = self.element['src'].replace('\\','/') #os.path.basename(self.element['src'])
         image_alt = self.element['alt']
@@ -37,22 +37,58 @@ class imageParser(ElementParser):
 
         image_file_path = head + "\\.." + image_path     
         image_file_path = image_file_path.replace('/','\\')
-        print("image Folder: " + image_file_path)
+        #print("image Folder: " + image_file_path)
 
         if(os.path.isfile(image_file_path)):
-             print("Adding Image")
+             #print("Adding Image")
              user = User.objects.get(username='developer')
              filepath, filename = os.path.split(image_file_path)
              with open(image_file_path, "rb") as f:
                  file_obj = File(f, name=filename)
                  image = Image.objects.create(owner=user,
                                             original_filename=filename,
-                                            file=file_obj)
-                 #instance = FilerImageField(null=True, blank=True, on_delete=models.DO_NOTHING)
+                                            file=file_obj)                 
                  image.save()
 
-                 image_url = image.url
-                 print("URL: " + image_url)
+                 # Create the Image plugin
+                 add_plugin(parent, 
+                    self.getPluginName(), 
+                    'en', 
+                    #body=self.getPluginBody(),
+                    target=placeholder,
+                    config={"template": "default",
+                            "picture": {"model": "filer.image", "pk": image.id},
+                            "external_picture": "",
+                            "lazy_loading": False,
+                            "width": "",
+                            "height": "",
+                            "alignment": "start",
+                            "caption_text": "",
+                            "link_attributes": {},
+                            "use_automatic_scaling": False,
+                            "use_crop": False,
+                            "use_no_cropping": False,
+                            "use_upscale": False,
+                            "use_responsive_image": "inherit",
+                            #"thumbnail_options": null,
+                            "picture_fluid": True,
+                            "picture_rounded": False,
+                            "picture_thumbnail": False,
+                            "attributes": {},
+                            "external_link": "",
+                            "internal_link": "",
+                            #"file_link": null,
+                            "anchor": "",
+                            "mailto": "",
+                            "phone": "",
+                            "target": "",
+                            #"responsive_visibility": null,
+                            "margin_x": "",
+                            "margin_y": "",
+                            #"margin_devices": null,
+                            "attributes": self.getAttributes()})
+
+
                  
         else:
              print("Not Adding Image")
@@ -73,6 +109,6 @@ class imageParser(ElementParser):
         #                     target=placeholder, 
         #                     config={"container_type": self.getSectionName(), "attributes": self.getAttributes()})
         
-        # {"template": "default", "picture": {"model": "filer.image", "pk": 1}, "external_picture": "", "lazy_loading": false, "width": null, "height": null, "alignment": "start", "caption_text": "", "link_attributes": {}, "use_automatic_scaling": false, "use_crop": false, "use_no_cropping": false, "use_upscale": false, "use_responsive_image": "inherit", "thumbnail_options": null, "picture_fluid": true, "picture_rounded": false, "picture_thumbnail": false, "attributes": {}, "external_link": "", "internal_link": "", "file_link": null, "anchor": "", "mailto": "", "phone": "", "target": "", "responsive_visibility": null, "margin_x": "", "margin_y": "", "margin_devices": null}
+        # {"template": "default", "picture": {"model": "filer.image", "pk": 1}, "external_picture": "", "lazy_loading": False, "width": null, "height": null, "alignment": "start", "caption_text": "", "link_attributes": {}, "use_automatic_scaling": False, "use_crop": False, "use_no_cropping": False, "use_upscale": False, "use_responsive_image": "inherit", "thumbnail_options": null, "picture_fluid": True, "picture_rounded": False, "picture_thumbnail": False, "attributes": {}, "external_link": "", "internal_link": "", "file_link": null, "anchor": "", "mailto": "", "phone": "", "target": "", "responsive_visibility": null, "margin_x": "", "margin_y": "", "margin_devices": null}
     
    
